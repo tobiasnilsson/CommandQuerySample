@@ -14,6 +14,5 @@ namespace CommandQuerySample.Infrastructure.DbContexts
             modelBuilder.Configurations.Add(new UserConfiguration());
             modelBuilder.Configurations.Add(new DepartmentConfiguration());
         }
-
     }
 }
