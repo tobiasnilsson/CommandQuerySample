@@ -109,6 +109,10 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\CommandQuerySample.Core\CommandQuerySample.Core.csproj">
+      <Project>{7d7ee705-427a-48e9-9465-5baea5e5d65e}</Project>
+      <Name>CommandQuerySample.Core</Name>
+    </ProjectReference>
     <ProjectReference Include="..\CommandQuerySample.WebUI\CommandQuerySample.WebUI.csproj">
       <Project>{8FC3540D-9B4C-4AEF-BC2E-89B2276B3C9C}</Project>
       <Name>CommandQuerySample.WebUI</Name>

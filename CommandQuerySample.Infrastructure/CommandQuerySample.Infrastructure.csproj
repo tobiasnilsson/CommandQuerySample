@@ -43,6 +43,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Commands\AddUserCommand.cs" />
+    <Compile Include="Commands\AddUserToDepartmentsCommand.cs" />
+    <Compile Include="Commands\AddDepartmentCommand.cs" />
     <Compile Include="Commands\CommandBase.cs" />
     <Compile Include="DbConfigurations\DepartmentConfiguration.cs" />
     <Compile Include="DbContexts\ISampleDbContext.cs" />
