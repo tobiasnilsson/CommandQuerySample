@@ -17,7 +17,21 @@ namespace CommandQuerySample.Infrastructure.Commands
 
         public void Add(User user, IEnumerable<Department> departments)
         {
-            throw new NotImplementedException();
+            if(user == null)
+                throw new ArgumentNullException("user");
+
+            if(departments == null)
+                throw new ArgumentNullException("departments");
+
+            if(!departments.Any())
+                throw new ArgumentException("departments");
+
+            foreach (var department in departments)
+            {
+                department.Users.Add(user);
+            }
+
+            Context.SaveChanges();
         }
     }
 }

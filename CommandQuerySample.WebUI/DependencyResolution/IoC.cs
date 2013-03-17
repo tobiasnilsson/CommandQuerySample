@@ -16,7 +16,11 @@
 // --------------------------------------------------------------------------------------------------------------------
 
 
+using CommandQuerySample.Core.NewCommands;
+using CommandQuerySample.Infrastructure.DbContexts;
+using CommandQuerySample.Infrastructure.NewCommandHandlers;
 using StructureMap;
+using StructureMap.Pipeline;
 namespace CommandQuerySample.WebUI.DependencyResolution {
     public static class IoC {
         public static IContainer Initialize() {
@@ -26,8 +30,11 @@ namespace CommandQuerySample.WebUI.DependencyResolution {
                                     {
                                         scan.TheCallingAssembly();
                                         scan.WithDefaultConventions();
+
+                                        //scan.IncludeNamespaceContainingType<OrderCanceledEvent>();
+                                        scan.ConnectImplementationsToTypesClosing(typeof(ICommandHandler<>));
                                     });
-            //                x.For<IExample>().Use<Example>();
+                            x.For<ISampleDbContext>().LifecycleIs(Lifecycles.GetLifecycle(InstanceScope.PerRequest)).Use<SampleDbContext>();
                         });
             return ObjectFactory.Container;
         }

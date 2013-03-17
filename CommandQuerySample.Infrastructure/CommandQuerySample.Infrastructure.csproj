@@ -48,6 +48,9 @@
     <Compile Include="Commands\CommandBase.cs" />
     <Compile Include="DbConfigurations\DepartmentConfiguration.cs" />
     <Compile Include="DbContexts\ISampleDbContext.cs" />
+    <Compile Include="NewCommandHandlers\NewAddUserToDepartmentsCommandHandler.cs" />
+    <Compile Include="NewCommandHandlers\CommandExecutor.cs" />
+    <Compile Include="NewCommandHandlers\NewAddUserCommandHandler.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Queries\GetUsersInDepartmentQuery.cs" />
     <Compile Include="Queries\QueryBase.cs" />

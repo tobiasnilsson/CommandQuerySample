@@ -30,6 +30,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="StructureMap">
+      <HintPath>..\CommandQuerySample.WebUI\bin\StructureMap.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -44,6 +47,16 @@
     <Compile Include="Commands\IAddUserToDepartmentsCommand.cs" />
     <Compile Include="Entities\Department.cs" />
     <Compile Include="Entities\User.cs" />
+    <Compile Include="NewCommands\CommandValidationException.cs" />
+    <Compile Include="NewCommands\NewAddUserToDepartmentsValidator.cs" />
+    <Compile Include="NewCommands\ICommand.cs" />
+    <Compile Include="NewCommands\ICommandDispatcher.cs" />
+    <Compile Include="NewCommands\ICommandExecutor.cs" />
+    <Compile Include="NewCommands\ICommandHandler.cs" />
+    <Compile Include="NewCommands\ICommandValidator.cs" />
+    <Compile Include="NewCommands\NewAddUserCommand.cs" />
+    <Compile Include="NewCommands\NewAddUserToDepartmentsCommand.cs" />
+    <Compile Include="NewCommands\ValidationResult.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Queries\IGetUserById.cs" />
     <Compile Include="Queries\IGetUsersInDepartmentQuery.cs" />
