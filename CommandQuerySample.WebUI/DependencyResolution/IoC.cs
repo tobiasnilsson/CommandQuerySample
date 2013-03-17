@@ -31,24 +31,20 @@ namespace CommandQuerySample.WebUI.DependencyResolution {
                                         scan.AssembliesFromApplicationBaseDirectory();
                                         scan.WithDefaultConventions();
 
-                                        //scan.IncludeNamespaceContainingType<OrderCanceledEvent>();
-                                        //scan.ConnectImplementationsToTypesClosing(typeof(ICommandHandler<>));
-
-
+                                        //Add the assemblies that contains the handlers and validators to the scanning
                                         scan.AssemblyContainingType<NewAddUserCommandHandler>();
                                         scan.IncludeNamespaceContainingType<NewAddUserCommandHandler>();
                                         scan.AssemblyContainingType<NewAddUserCommandValidator>();
                                         scan.IncludeNamespaceContainingType<NewAddUserCommandValidator>();
 
-
-
-
+                                        //Register all types of command validators and handlers
                                         scan.AddAllTypesOf(typeof(ICommandHandler<>));
                                         scan.AddAllTypesOf(typeof(ICommandValidator<>));
 
-
                                     });
-                            x.For<ISampleDbContext>().LifecycleIs(Lifecycles.GetLifecycle(InstanceScope.PerRequest)).Use<SampleDbContext>();
+
+                            //The context needs to be one instance per http request
+                            x.For<ISampleDbContext>().HttpContextScoped().Use<SampleDbContext>();
                         });
             return ObjectFactory.Container;
         }

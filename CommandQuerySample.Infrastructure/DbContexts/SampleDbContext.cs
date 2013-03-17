@@ -9,6 +9,11 @@ namespace CommandQuerySample.Infrastructure.DbContexts
         public IDbSet<User> Users { get; set; }
         public IDbSet<Department> Departments { get; set; }
 
+        public SampleDbContext()
+            : base("SampleDb")
+        {
+        }
+
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             modelBuilder.Configurations.Add(new UserConfiguration());
