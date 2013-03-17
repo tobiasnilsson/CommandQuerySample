@@ -4,33 +4,35 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using CommandQuerySample.Core.Commands;
+using CommandQuerySample.Core.Entities;
 using CommandQuerySample.Core.Queries;
 using CommandQuerySample.Infrastructure;
 using CommandQuerySample.Infrastructure.DbContexts;
+using CommandQuerySample.Core.NewCommands;
 
 namespace CommandQuerySample.WebUI.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly IAddDepartmentCommand _addDepartmentCommand;
-        private readonly IAddUserCommand _addUserCommand;
-        private readonly IAddUserToDepartmentsCommand _addUserToDepartmentsCommand;
-        private readonly IGetUserByIdQuery _getUserByIdQuery;
+        private readonly ICommandExecutor _commandExecutor;
 
-        public HomeController(IAddDepartmentCommand addDepartmentCommand, 
-            IAddUserCommand addUserCommand, 
-            IAddUserToDepartmentsCommand addUserToDepartmentsCommand,
-            IGetUserByIdQuery getUserByIdQuery)
+        public HomeController(ICommandExecutor commandExecutor)
         {
-            _addDepartmentCommand = addDepartmentCommand;
-            _addUserCommand = addUserCommand;
-            _addUserToDepartmentsCommand = addUserToDepartmentsCommand;
-            _getUserByIdQuery = getUserByIdQuery;
+            _commandExecutor = commandExecutor;
         }
 
         public ActionResult Index()
         {
             ViewBag.Message = "Modify this template to jump-start your ASP.NET MVC application.";
+
+            var commands = new List<ICommand>
+                {
+                    new NewAddUserCommand {User = new User {Name = "Mick Jagger"}},
+                    new NewAddUserCommand {User = new User {Name = "Bob Dylan"}},
+                    new NewAddUserCommand {User = new User {Name = "Steve Mason"}}
+                };
+
+            _commandExecutor.Execute(commands);
 
             return View();
         }

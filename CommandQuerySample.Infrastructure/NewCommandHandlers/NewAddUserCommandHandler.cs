@@ -17,8 +17,9 @@ namespace CommandQuerySample.Infrastructure.NewCommandHandlers
             _context = context;
         }
 
-        public void Handle(NewAddUserCommand command)
+        public void Handle(object commandObj)
         {
+            var command = (NewAddUserCommand)commandObj;
             _context.Users.Add(command.User);
         }
     }

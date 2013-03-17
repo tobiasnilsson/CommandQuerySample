@@ -6,8 +6,13 @@ using System.Threading.Tasks;
 
 namespace CommandQuerySample.Core.NewCommands
 {
-    public interface ICommandValidator<in TCommand> where TCommand : ICommand
+    public interface ICommandValidator
     {
-        ValidationResult Validate(TCommand command);
+        ValidationResult Validate(object command);
+    }
+
+    public interface ICommandValidator<in TCommand> : ICommandValidator where TCommand : ICommand
+    {
+        //ValidationResult Validate(TCommand command);
     }
 }

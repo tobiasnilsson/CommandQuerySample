@@ -18,8 +18,9 @@ namespace CommandQuerySample.Infrastructure.NewCommandHandlers
             _context = context;
         }
 
-        public void Handle(NewAddUserToDepartmentsCommand command)
+        public void Handle(object commandObj)
         {
+            var command = (NewAddUserToDepartmentsCommand) commandObj;
             foreach (var department in command.Departments)
             {
                 department.Users.Add(command.User);

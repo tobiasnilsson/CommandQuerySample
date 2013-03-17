@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace CommandQuerySample.Core.NewCommands
 {
-    public class NewAddUserToDepartmentsValidator : ICommandValidator<NewAddUserToDepartmentsCommand>
+    public class NewAddUserToDepartmentsCommandValidator : ICommandValidator<NewAddUserToDepartmentsCommand>
     {
         public ValidationResult Validate(NewAddUserToDepartmentsCommand command)
         {
@@ -25,6 +25,11 @@ namespace CommandQuerySample.Core.NewCommands
             }
 
             return result;
+        }
+
+        public ValidationResult Validate(object command)
+        {
+            return Validate((NewAddUserToDepartmentsCommand) command);
         }
     }
 }

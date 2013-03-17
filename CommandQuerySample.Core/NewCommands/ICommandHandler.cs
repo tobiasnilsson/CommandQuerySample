@@ -6,8 +6,13 @@ using System.Threading.Tasks;
 
 namespace CommandQuerySample.Core.NewCommands
 {
-    public interface ICommandHandler<in TCommand> where TCommand : ICommand
+    public interface ICommandHandler
     {
-        void Handle(TCommand command);
+        void Handle(object command);
+    }
+
+    public interface ICommandHandler<in TCommand> : ICommandHandler where TCommand : ICommand
+    {
+        //void Handle(TCommand command);
     }
 }

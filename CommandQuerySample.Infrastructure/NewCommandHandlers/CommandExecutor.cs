@@ -24,15 +24,14 @@ namespace CommandQuerySample.Infrastructure.NewCommandHandlers
         {
             foreach (var command in commands)
             {
-                var commandType = command.GetType();
 
-                var validator = _dispatcher.GetValidator<commandType>();
+                var validator = _dispatcher.GetValidator(command);
                 var validationResult = validator.Validate(command);
 
                 if (!validationResult.IsValid)
                     throw new CommandValidationException(validationResult.ErrorMessages);
 
-                var handler = _dispatcher.GetHandler<commandType>();
+                var handler = _dispatcher.GetHandler(command);
                 handler.Handle(command);
             }
 

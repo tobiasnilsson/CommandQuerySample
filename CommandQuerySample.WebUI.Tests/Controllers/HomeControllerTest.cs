@@ -9,23 +9,19 @@ using CommandQuerySample.WebUI;
 using CommandQuerySample.WebUI.Controllers;
 using Moq;
 using CommandQuerySample.Core.Commands;
+using CommandQuerySample.Core.NewCommands;
 
 namespace CommandQuerySample.WebUI.Tests.Controllers
 {
     [TestClass]
     public class HomeControllerTest
     {
-        private Mock<IGetUserByIdQuery> getUserByIdQuery;
-        private Mock<IAddDepartmentCommand> addDepartmentCommand;
-        private Mock<IAddUserCommand> addUserCommand;
-        private Mock<IAddUserToDepartmentsCommand> addUserToDepartmentsCommand;
+        private Mock<ICommandExecutor> _commandExecutor;
+            
         [TestInitialize]
         public void Setup()
         {
-            getUserByIdQuery = new Mock<IGetUserByIdQuery>();
-            addDepartmentCommand = new Mock<IAddDepartmentCommand>();
-            addUserCommand = new Mock<IAddUserCommand>();
-            addUserToDepartmentsCommand = new Mock<IAddUserToDepartmentsCommand>();
+            _commandExecutor = new Mock<ICommandExecutor>();
         }
 
         [TestMethod]
@@ -69,10 +65,7 @@ namespace CommandQuerySample.WebUI.Tests.Controllers
 
         public HomeController GetController()
         {
-            return new HomeController(addDepartmentCommand.Object, 
-                addUserCommand.Object, 
-                addUserToDepartmentsCommand.Object, 
-                getUserByIdQuery.Object);
+            return new HomeController(_commandExecutor.Object);
         }
     }
 }
