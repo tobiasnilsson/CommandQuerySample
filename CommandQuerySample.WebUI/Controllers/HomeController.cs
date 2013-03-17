@@ -27,9 +27,17 @@ namespace CommandQuerySample.WebUI.Controllers
 
             var commands = new List<ICommand>
                 {
-                    new NewAddUserCommand {User = new User {Name = "Mick Jagger"}},
-                    new NewAddUserCommand {User = new User {Name = "Bob Dylan"}},
-                    new NewAddUserCommand {User = new User {Name = "Steve Mason"}}
+                    new NewAddUserCommand {User = new User {Name = "Mick Jagger", Department = new Department{Name = "Dept A"}}},
+                    new NewAddUserCommand {User = new User {Name = "Steve Mason", Department = new Department{Name = "Dept B"}}},
+
+                    new NewAddUserToDepartmentsCommand
+                    { 
+                        User = new User{ Name = "Deputy Dave"},
+                        Departments = new List<Department>
+                            {
+                                new Department{Name = "Dept 1"}, 
+                                new Department{Name = "Dept 2"}
+                            }}
                 };
 
             _commandExecutor.Execute(commands);

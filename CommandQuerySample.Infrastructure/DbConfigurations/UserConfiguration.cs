@@ -7,7 +7,7 @@ namespace CommandQuerySample.Infrastructure.DbConfigurations
     {
         public UserConfiguration()
         {
-            base.HasRequired(u => u.Department);
+
         }
     }
 }

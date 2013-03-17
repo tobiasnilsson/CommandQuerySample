@@ -8,9 +8,11 @@ namespace CommandQuerySample.Core.NewCommands
 {
     public class NewAddUserToDepartmentsCommandValidator : ICommandValidator<NewAddUserToDepartmentsCommand>
     {
-        public ValidationResult Validate(NewAddUserToDepartmentsCommand command)
+        public ValidationResult Validate(object commandObj)
         {
-            var result = new ValidationResult();
+            var command = (NewAddUserToDepartmentsCommand) commandObj;
+
+            var result = new ValidationResult { IsValid = true };
 
             if (command.User == null)
             {
@@ -25,11 +27,6 @@ namespace CommandQuerySample.Core.NewCommands
             }
 
             return result;
-        }
-
-        public ValidationResult Validate(object command)
-        {
-            return Validate((NewAddUserToDepartmentsCommand) command);
         }
     }
 }

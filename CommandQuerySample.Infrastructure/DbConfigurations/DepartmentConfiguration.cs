@@ -7,7 +7,6 @@ namespace CommandQuerySample.Infrastructure.DbConfigurations
     {
         public DepartmentConfiguration()
         {
-            base.HasMany(d => d.Users);
         }
     }
 }

@@ -1,6 +1,7 @@
 ﻿using System;
 using CommandQuerySample.Core.NewCommands;
 using StructureMap;
+using CommandQuerySample.Infrastructure.DbContexts;
 
 namespace CommandQuerySample.Infrastructure.NewCommandHandlers
 {
@@ -11,10 +12,7 @@ namespace CommandQuerySample.Infrastructure.NewCommandHandlers
             var commandType = command.GetType();
 
             Type handlerType = typeof(ICommandHandler<>);
-            // MakeGenericType is badly named
             Type constructedClass = handlerType.MakeGenericType(commandType);
-
-            //var handler = Activator.CreateInstance(constructedClass) as ICommandHandler<ICommand>;
 
             var handler = ObjectFactory.GetInstance(constructedClass);
 
@@ -26,14 +24,11 @@ namespace CommandQuerySample.Infrastructure.NewCommandHandlers
             var commandType = command.GetType();
 
             Type validatorType = typeof(ICommandValidator<>);
-            // MakeGenericType is badly named
             Type constructedClass = validatorType.MakeGenericType(commandType);
-
-            //var handler = Activator.CreateInstance(constructedClass) as ICommandHandler<ICommand>;
 
             var validator = ObjectFactory.GetInstance(constructedClass);
 
-            return validator as ICommandValidator; //ICommandValidator<ICommand>;
+            return validator as ICommandValidator;
         }
     }
 }

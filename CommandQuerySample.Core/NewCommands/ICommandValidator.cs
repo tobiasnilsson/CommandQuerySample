@@ -8,11 +8,10 @@ namespace CommandQuerySample.Core.NewCommands
 {
     public interface ICommandValidator
     {
-        ValidationResult Validate(object command);
+        ValidationResult Validate(object commandObj);
     }
 
-    public interface ICommandValidator<in TCommand> : ICommandValidator where TCommand : ICommand
+    public interface ICommandValidator<TCommand> : ICommandValidator where TCommand : ICommand
     {
-        //ValidationResult Validate(TCommand command);
     }
 }

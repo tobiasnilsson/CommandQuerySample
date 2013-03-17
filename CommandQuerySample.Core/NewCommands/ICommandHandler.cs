@@ -8,11 +8,10 @@ namespace CommandQuerySample.Core.NewCommands
 {
     public interface ICommandHandler
     {
-        void Handle(object command);
+        void Handle(object commandObj);
     }
 
-    public interface ICommandHandler<in TCommand> : ICommandHandler where TCommand : ICommand
+    public interface ICommandHandler<TCommand> : ICommandHandler where TCommand : ICommand
     {
-        //void Handle(TCommand command);
     }
 }
